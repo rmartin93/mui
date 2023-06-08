@@ -176,15 +176,7 @@ export default function PrimarySearchAppBar({ colorMode }) {
 		<Box sx={{ flexGrow: 1 }} style={{ marginBottom: "1rem" }}>
 			<AppBar position="static">
 				<Toolbar>
-					<IconButton
-						size="large"
-						edge="start"
-						color="inherit"
-						aria-label="open drawer"
-						sx={{ mr: 2 }}
-					>
-						<MenuDrawer />
-					</IconButton>
+					<MenuDrawer />
 					<Typography
 						variant="h6"
 						noWrap

@@ -11,6 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
+import { IconButton } from "@mui/material";
 
 export default function MenuDrawer() {
 	const [state, setState] = React.useState({
@@ -69,9 +70,16 @@ export default function MenuDrawer() {
 	return (
 		<div>
 			<React.Fragment>
-				<Button onClick={toggleDrawer("left", true)}>
+				<IconButton
+					onClick={toggleDrawer("left", true)}
+					size="large"
+					edge="start"
+					color="inherit"
+					aria-label="open drawer"
+					sx={{ mr: 2 }}
+				>
 					<MenuIcon />
-				</Button>
+				</IconButton>
 				<Drawer
 					anchor={"left"}
 					open={state["left"]}
