@@ -9,12 +9,15 @@ import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
+import { useTheme } from "@mui/material/styles";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import MenuDrawer from "./MenuDrawer";
 
 const Search = styled("div")(({ theme }) => ({
 	position: "relative",
@@ -56,7 +59,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 	},
 }));
 
-export default function PrimarySearchAppBar() {
+export default function PrimarySearchAppBar({ colorMode }) {
+	const theme = useTheme();
+
 	const [anchorEl, setAnchorEl] = React.useState(null);
 	const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -151,6 +156,19 @@ export default function PrimarySearchAppBar() {
 				</IconButton>
 				<p>Profile</p>
 			</MenuItem>
+			<MenuItem>
+				<IconButton
+					sx={{ ml: 1 }}
+					onClick={colorMode.toggleColorMode}
+					color="inherit"
+				>
+					{theme.palette.mode === "dark" ? (
+						<Brightness7Icon />
+					) : (
+						<Brightness4Icon />
+					)}
+				</IconButton>
+			</MenuItem>
 		</Menu>
 	);
 
@@ -165,7 +183,7 @@ export default function PrimarySearchAppBar() {
 						aria-label="open drawer"
 						sx={{ mr: 2 }}
 					>
-						<MenuIcon />
+						<MenuDrawer />
 					</IconButton>
 					<Typography
 						variant="h6"
@@ -214,6 +232,17 @@ export default function PrimarySearchAppBar() {
 							color="inherit"
 						>
 							<AccountCircle />
+						</IconButton>
+						<IconButton
+							sx={{ ml: 1 }}
+							onClick={colorMode.toggleColorMode}
+							color="inherit"
+						>
+							{theme.palette.mode === "dark" ? (
+								<Brightness7Icon />
+							) : (
+								<Brightness4Icon />
+							)}
 						</IconButton>
 					</Box>
 					<Box sx={{ display: { xs: "flex", md: "none" } }}>

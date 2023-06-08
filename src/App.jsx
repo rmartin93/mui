@@ -2,24 +2,50 @@ import Button from "@mui/material/Button";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import PrimarySearchAppBar from "./components/PrimarySearchAppBar";
 import Grid from "@mui/material/Unstable_Grid2";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
-import { Card, CardContent } from "@mui/material";
-import TemporaryDrawer from "./components/TemporaryDrawer";
-function App() {
-	const Item = styled(Paper)(({ theme }) => ({
-		backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-		...theme.typography.body2,
-		padding: theme.spacing(1),
-		textAlign: "center",
-		color: theme.palette.text.secondary,
-	}));
+import { Card, CardContent, Typography } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import PokeTable from "./components/PokeTable";
+import * as React from "react";
+
+export default function App() {
+	const [mode, setMode] = React.useState("dark");
+	const colorMode = React.useMemo(
+		() => ({
+			toggleColorMode: () => {
+				setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+			},
+		}),
+		[]
+	);
+
+	const theme = React.useMemo(
+		() =>
+			createTheme({
+				palette: {
+					mode,
+				},
+			}),
+		[mode]
+	);
+
 	return (
-		<>
-			<PrimarySearchAppBar />
+		<ThemeProvider theme={theme}>
+			<CssBaseline />
+			<PrimarySearchAppBar colorMode={colorMode} />
 			<main>
 				<Grid container spacing={2}>
-					<Grid xs={8}>
+					<Grid xs={6}>
+						<Card>
+							<CardContent>
+								<Typography mb={3} variant="h5" component="div">
+									Pokemon (OG 151)
+								</Typography>
+								<PokeTable />
+							</CardContent>
+						</Card>
+					</Grid>
+					<Grid xs={6}>
 						<Card>
 							<CardContent>
 								<Button variant="contained">
@@ -29,17 +55,8 @@ function App() {
 							</CardContent>
 						</Card>
 					</Grid>
-					<Grid xs={4}>
-						<Card>
-							<CardContent>
-								<TemporaryDrawer />
-							</CardContent>
-						</Card>
-					</Grid>
 				</Grid>
 			</main>
-		</>
+		</ThemeProvider>
 	);
 }
-
-export default App;
