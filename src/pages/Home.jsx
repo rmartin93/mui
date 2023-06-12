@@ -2,8 +2,6 @@ import * as React from "react";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Card, CardContent, Typography } from "@mui/material";
 import PokeTable from "../components/PokeTable";
-import Button from "@mui/material/Button";
-import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import PokeDetail from "../components/PokeDetail";
 
 export default function Home() {
