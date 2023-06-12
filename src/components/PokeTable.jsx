@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 
-export default function PokeTable() {
+export default function PokeTable({ setPokeId }) {
 	// Fetch the pokemon data from the API
 	const fetcher = (url) => fetch(url).then((res) => res.json());
 	const { data, error } = useSWR(
@@ -10,6 +10,7 @@ export default function PokeTable() {
 	);
 	if (error) return <div>failed to load</div>;
 	if (!data) return <div>loading...</div>;
+
 	// Define the columns for the table
 	const columns = [
 		{ field: "id", headerName: "ID", width: 70 },
@@ -38,6 +39,11 @@ export default function PokeTable() {
 						showQuickFilter: true,
 						quickFilterProps: { debounceMs: 500 },
 					},
+				}}
+				// on row click, get row info
+				onRowClick={(row) => {
+					console.log("row", row);
+					setPokeId(row.id);
 				}}
 			/>
 		</div>
