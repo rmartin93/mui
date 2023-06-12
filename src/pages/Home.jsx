@@ -8,7 +8,7 @@ export default function Home() {
 	const [pokeId, setPokeId] = React.useState(null);
 	return (
 		<Grid container spacing={2}>
-			<Grid xs>
+			<Grid xs={12} sm={9}>
 				<Card>
 					<CardContent>
 						<Typography mb={3} variant="h5" component="div">
@@ -18,7 +18,7 @@ export default function Home() {
 					</CardContent>
 				</Card>
 			</Grid>
-			<Grid xs={3}>
+			<Grid xs={12} sm={3}>
 				{pokeId && (
 					<Card>
 						<CardContent>
